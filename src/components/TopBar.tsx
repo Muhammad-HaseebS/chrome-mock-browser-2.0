@@ -4,7 +4,7 @@ import AddressBar from "./AddressBar";
 
 const TopBar: React.FC = () => (
   <div className="top-bar">
-    <Tabs />
+    
     <AddressBar />
   </div>
 );

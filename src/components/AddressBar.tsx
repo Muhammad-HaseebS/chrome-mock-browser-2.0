@@ -1,13 +1,14 @@
 import React from "react";
 import { FaArrowLeft, FaArrowRight, FaRedo, FaLock, FaStar, FaEllipsisV } from "react-icons/fa";
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     display: "flex",
     alignItems: "center",
     gap: 12,
-    flex: 1,
-  } as React.CSSProperties,
+    flex: 1
+  },
+
   addressBar: {
     display: "flex",
     alignItems: "center",
@@ -18,25 +19,28 @@ const styles = {
     flex: 1,
     maxWidth: 500,
     minWidth: 300,
-    height: 36,
-  } as React.CSSProperties,
+    height: 36
+  },
+
   input: {
     border: "none",
     outline: "none",
     background: "transparent",
     fontSize: 16,
     flex: 1,
-    margin: "0 8px",
-  } as React.CSSProperties,
+    margin: "0 8px"
+  },
+
   icon: {
     color: "#888",
     fontSize: 18,
     margin: "0 4px",
-    cursor: "pointer",
-  } as React.CSSProperties,
+    cursor: "pointer"
+  },
+
   lock: { color: "#4caf50" },
   star: { color: "#fbc02d" },
-  menu: { marginLeft: 16 },
+  menu: { marginLeft: 16 }
 };
 
 const AddressBar: React.FC = () => (
