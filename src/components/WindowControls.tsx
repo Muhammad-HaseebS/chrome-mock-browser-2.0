@@ -1,7 +1,7 @@
 import React from "react";
 import { FaRegWindowMinimize, FaRegSquare } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
-import { LuCopy } from "react-icons/lu"; // Restore icon
+import { LuCopy } from "react-icons/lu"; 
 import Tabs from "./Tabs";
 
 interface Props {
