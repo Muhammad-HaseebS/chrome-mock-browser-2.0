@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const tabList = [
   { id: 1, title: "New Tab" },
-  { id: 2, title: "+" },
+  // { id: 2, title: "+" },
 ];
 
 const Tabs: React.FC = () => {

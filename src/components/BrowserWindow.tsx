@@ -4,38 +4,6 @@ import TopBar from "./TopBar";
 import { CiSearch } from "react-icons/ci";
 import { FaEnvelope, FaYoutube, FaMapMarkedAlt, FaPlus } from "react-icons/fa";
 
-const initialStyle: React.CSSProperties = {
-  width: 900,
-  minHeight: 500,
-  background: "#fff",
-  borderRadius: 10,
-  boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-  overflow: "hidden",
-  position: "relative",
-  transition: "all 0.3s",
-  display: "flex",
-  flexDirection: "column",
-};
-
-const minimizedStyle: React.CSSProperties = {
-  ...initialStyle,
-  height: 40,
-  minHeight: 0,
-  overflow: "hidden",
-};
-
-const maximizedStyle: React.CSSProperties = {
-  ...initialStyle,
-  width: "100vw",
-  height: "100vh",
-  minHeight: "100vh",
-  borderRadius: 0,
-  position: "fixed",
-  top: 0,
-  left: 0,
-  zIndex: 999,
-};
-
 const shortcuts = [
   { label: "Gmail", icon: <FaEnvelope size={24} /> },
   { label: "YouTube", icon: <FaYoutube size={24} /> },
@@ -47,12 +15,21 @@ const BrowserWindow: React.FC = () => {
   const [minimized, setMinimized] = useState(false);
   const [maximized, setMaximized] = useState(false);
   const [closed, setClosed] = useState(false);
+  const [search, setSearch] = useState(""); 
 
   if (closed) return null;
-
-  let style = initialStyle;
-  if (minimized) style = minimizedStyle;
-  else if (maximized) style = maximizedStyle;
+  const style: React.CSSProperties = {
+    width: maximized ? "100vw" : 900,
+    height: maximized ? "60vh" : 400,
+    borderRadius: maximized ? 0 : 16,
+    overflow: "hidden",
+    boxShadow: "0 8px 40px rgba(0,0,0,0.18)",
+    background: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    margin: maximized ? 0 : "20px auto",
+  };
 
   return (
     <div style={style}>
@@ -99,7 +76,8 @@ const BrowserWindow: React.FC = () => {
                   outline: "none",
                 }}
                 placeholder="Search Google or type a URL"
-                disabled
+                value={search}
+                onChange={e => setSearch(e.target.value)}
               />
               <button
                 style={{
@@ -108,9 +86,9 @@ const BrowserWindow: React.FC = () => {
                   border: "none",
                   fontSize: 20,
                   color: "#b5a200",
-                  cursor: "not-allowed",
+                  cursor: "pointer",
                 }}
-                disabled
+                onClick={() => alert(`Searching for: ${search}`)}
               >
                 <CiSearch />
               </button>
