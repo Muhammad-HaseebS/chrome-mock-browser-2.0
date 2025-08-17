@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
+import { RxCross2 } from "react-icons/rx";
 
-const tabList = [
-  { id: 1, title: "New Tab" },
-  // { id: 2, title: "+" },
-];
+export type Tab = { id: number; title: string; url: string };
 
-const Tabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(1);
+type Props = {
+  tabs: Tab[];
+  activeId: number;
+  onActivate: (id: number) => void;
+  onCloseTab: (id: number) => void;
+};
 
+const Tabs: React.FC<Props> = ({ tabs, activeId, onActivate, onCloseTab }) => {
   return (
     <div className="tabs">
-      {tabList.map((tab) => (
+      {tabs.map((t) => (
         <div
-          key={tab.id}
-          className={`tab${activeTab === tab.id ? " active" : ""}`}
-          onClick={() => setActiveTab(tab.id)}
+          key={t.id}
+          className={`tab${activeId === t.id ? " active" : ""}`}
+          onClick={() => onActivate(t.id)}
+          title={t.url}
+          style={{ display: "flex", alignItems: "center", gap: 8 }}
         >
-          {tab.title}
+          <span>{t.title}</span>
+          <button
+            onClick={(e) => { e.stopPropagation(); onCloseTab(t.id); }}
+            title="Close tab"
+            style={{
+              border: "none", background: "transparent", cursor: "pointer",
+              width: 20, height: 20, display: "flex", alignItems: "center", justifyContent: "center"
+            }}
+          >
+            <RxCross2 />
+          </button>
         </div>
       ))}
     </div>
